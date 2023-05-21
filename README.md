@@ -1,0 +1,5 @@
+# Airplane
+
+## License
+
+[MIT](./LICENSE)
