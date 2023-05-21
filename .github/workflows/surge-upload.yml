@@ -29,7 +29,7 @@ jobs:
       - name: Surge upload
         uses: koj-co/deploy-pr-action@v1.0.1
         with:
-          prefix: airplane
+          prefix: airplane-brtmvdl
           distDir: ./src/www
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
