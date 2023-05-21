@@ -1,0 +1,31 @@
+name: NPX Surge
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '15 15 * * *'
+  push:
+    branches: 
+      - 'main'
+
+jobs:
+  surge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      - name: Surge upload
+        uses: koj-co/deploy-pr-action@v1.0.1
+        with:
+          prefix: "chalkboard"
+          distDir: "./src/www/"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
