@@ -22,13 +22,13 @@ jobs:
           node-version: '18.x'
 
       - name: Setup Date
-        run: date > src/www/date.html
+        run: date > ./src/www/date.html
 
       - name: Surge upload
         uses: koj-co/deploy-pr-action@v1.0.1
         with:
-          prefix: "chalkboard"
-          distDir: "./src/www/"
+          prefix: airplane
+          distDir: ./src/www
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
