@@ -24,13 +24,7 @@ jobs:
         run: date > ./src/www/date.html
 
       - name: List files
-        run: ls ./src/www
-
-      - name: Surge upload
-        uses: koj-co/deploy-pr-action@v1.0.1
-        with:
-          prefix: airplane-brtmvdl
-          distDir: ./src/www
+        run: bash ./env/surge.sh
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
