@@ -24,8 +24,10 @@ jobs:
         run: date > ./src/www/date.html
 
       - name: List files
-        run: bash ./env/surge.sh
+        run: npx surge ./src/www/
+
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
