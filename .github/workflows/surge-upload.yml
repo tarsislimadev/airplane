@@ -25,9 +25,7 @@ jobs:
 
       - name: List files
         run: npx surge ./src/www/
-
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PAT }}
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
-
