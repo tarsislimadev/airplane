@@ -37,3 +37,15 @@ renderer.setAnimationLoop(() => {
 
   renderer.render(scene, camera)
 })
+
+const socket = new WebSocket('ws://localhost:8000')
+
+socket.addEventListener('error', console.error)
+
+socket.addEventListener('open', (data) => {
+  console.log('open', { data })
+
+  socket.send("Hello Server!")
+})
+
+socket.addEventListener('message', (data) => console.log('message', { data }))
