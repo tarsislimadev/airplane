@@ -1,6 +1,5 @@
-import * as THREE from 'three'
+import * as TWO from 'two'
 import { ClientSocket } from 'webSocket'
-import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
 
 const __ = {
   getWidth: () => window.innerWidth,
@@ -15,36 +14,29 @@ const COLORS = {
 
 // //
 
-const scene = new THREE.Scene()
+const scene = new TWO.Scene()
 
-const grid = new THREE.GridHelper(100, 100, COLORS.WHITE)
+const grid = new TWO.GridHelper(100, 100, COLORS.WHITE)
 scene.add(grid)
 
 // //
 
-const camera = new THREE.PerspectiveCamera(45, __.getAspect())
-camera.position.set(+10.0, +10.0, +0.0)
-
-const renderer = new THREE.WebGLRenderer()
+const renderer = new TWO.WebGLRenderer()
 renderer.setSize(__.getWidth(), __.getHeight())
 document.body.appendChild(renderer.domElement)
 
 document.body.style.margin = '0'
 
-const controls = new OrbitControls(camera, renderer.domElement);
+renderer.setAnimationLoop(() => renderer.render(scene))
 
-renderer.setAnimationLoop(() => {
-  controls.update()
-
-  renderer.render(scene, camera)
-})
+//
 
 const socket = new ClientSocket({ port: '8000' })
 
 socket.addEventListener('error', console.error)
 
 socket.addEventListener('open', (data) => {
-  console.log('open', { data })
+  socket.send('hello', 'server')
 })
 
 socket.addEventListener('message', (data) => {
